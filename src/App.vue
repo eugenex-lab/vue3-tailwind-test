@@ -1,6 +1,9 @@
 <template>
   <main class="min-h-screen bg-gray-100 p-12">
-        <TotalExpenses :label="'hu'" :totalExpenses="totalUserExpenses" />
+      
+                <TotalExpenses label="Total Expenses" :total="totalExistingExpenses" />
+
+
     <div class="my-3"></div>
     <h4 class="text-xl">{{ PageTitle }}</h4>
     <div class="border border-black"></div>
@@ -16,6 +19,7 @@
 
 <script>
 import TotalExpenses from './components/TotalExpenses.vue';
+import Card from './components/CardList.vue';
 
 /**
  * 1 - Call this API url https://jsonplaceholder.typicode.com/users, supplying only the name and numeric value.
@@ -28,10 +32,12 @@ export default {
   name: 'App',
   components: {
     TotalExpenses,
+    Card
     
   },
   data() {
     return {
+      total:444,
       PageTitle: 'Friend List',
       existingExpenses: [
         {
@@ -52,6 +58,13 @@ export default {
 
     };
   },
+
+  computed: {
+    totalExistingExpenses() {
+      return this.existingExpenses.reduce((total, expense) => total + expense.totalValue, 0);
+    }
+  },
+
   methods: {
     fetchUsers() {
       const fetchUrl = 'https://jsonplaceholder.typicode.com/users';

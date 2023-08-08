@@ -1,34 +1,36 @@
 <template>
-  Reference Image:
-  <img src="https://i.ibb.co/kcjL2pV/balance-small.png" alt="" />
-  <img src="https://i.ibb.co/XySKnfq/ionicon-person.png" alt="" />
-
-  <!-- The Font Name is "Nunito". Hint: its a google font -->
-
-  <!-- Component Code -->
-  <div>
-    <div>{{ label }}</div>
-    <div>30,001</div>
-    <div>  {{ totalExpenses }}  </div>
+  <div class="total-expenses rounded-lg p-4 flex items-center justify-between bg-gradient-to-r from-purple-500 via-pink-500 to-red-500">
+    <div class="flex flex-col">
+      <div class="text-2xl font-bold text-white">{{ formattedTotal }} NGN</div>
+      <div class="text-sm text-white">{{ label }}</div>
+    </div>
+    <img src="https://i.ibb.co/XySKnfq/ionicon-person.png" alt="Person Icon" class="ml-4" />
   </div>
 </template>
 
 <script>
-/**
- * YOUR ASSIGNMENT, SHOULD YOU ACCEPT:
- * CONVERT THIS COMPONENT TO MATCH THE IMAGE GRAPHIC PROVIDED ABOVE
- * */
 export default {
-  label: {tao
-    type: String,
-    default: '',
+  props: {
+    label: {
+      type: String,
+      default: '',
+    },
+    total: {
+      type: Number,
+      default: 0,
+    },
   },
-  c:{
-    type: Number,
-    default: '10',
+  computed: {
+    formattedTotal() {
+      return this.total.toLocaleString();
+    },
   },
-
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.total-expenses {
+  border: 2px solid #e2e8f0;
+  background-color: #f7fafc;
+}
+</style>
